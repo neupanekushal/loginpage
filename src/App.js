@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import AddUser from "./AddUser/AddUser";
+import UserList from "./UserList/UserList";
+import { useState, Fragment } from "react";
 
 function App() {
+  const [allData, setAllData] = useState([]);
+  const addUserHandler = (userInfo) => {
+    setAllData((prevData) => {
+      return [...prevData, userInfo];
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <AddUser onAddUser={addUserHandler} />
+      <UserList users={allData} />
+    </Fragment>
   );
 }
 
 export default App;
+
+/**
+ * What we will do in this app
+ * 1. Components, State, Props
+ * 2. popups, refrences, Fragments
+ *
+ * //////////
+ *
+ * 1. Card
+ * 2. Button
+ * 3. Form-add
+ * 4. List
+ */
